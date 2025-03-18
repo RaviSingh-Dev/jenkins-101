@@ -25,7 +25,8 @@ pipeline {
                 sh '''
                 cd myapp
                 source venv/bin/activate
-                # Run your tests here
+                python3 hello.py
+                python3 hello.py --name=Brad
                 '''
             }
         }
