@@ -2,8 +2,8 @@ pipeline {
     agent { 
         node {
             label 'docker-alpine-agents'
-            }
-      }
+        }
+    }
     triggers {
         pollSCM '* * * * *'
     }
@@ -13,6 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
+                python3 -m venv venv
+                source venv/bin/activate
                 pip install -r requirements.txt
                 '''
             }
@@ -21,6 +23,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
+                cd myapp
+                source venv/bin/activate
+                # Run your tests here
                 '''
             }
         }
